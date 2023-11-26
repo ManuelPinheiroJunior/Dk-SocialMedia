@@ -1,6 +1,8 @@
 import { Typography, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import WidgetWrapper from "components/WidgetWrapper";
+import { Close  }  from "@mui/icons-material";
+
 
 const AdvertWidget = () => {
   const { palette } = useTheme();
@@ -12,24 +14,24 @@ const AdvertWidget = () => {
     <WidgetWrapper>
       <FlexBetween>
         <Typography color={dark} variant="h5" fontWeight="500">
-          Sponsored
+          Advertising
         </Typography>
-        <Typography color={medium}>Create Ad</Typography>
+        <Typography color={medium}> <Close style={{ cursor: "pointer" }}/></Typography>
       </FlexBetween>
       <img
         width="100%"
         height="auto"
         alt="advert"
-        src="http://localhost:3001/assets/info4.jpeg"
+        src="../assets/veygo.jpg"
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>
-        <Typography color={main}>MikaCosmetics</Typography>
-        <Typography color={medium}>mikacosmetics.com</Typography>
+        <Typography color={main}>The World’s Most Desired Motors</Typography>
+        <Typography color={medium}>veygo.com</Typography>
       </FlexBetween>
       <Typography color={medium} m="0.5rem 0">
-        Your pathway to stunning and immaculate beauty and made sure your skin
-        is exfoliating skin and shining like light.
+         We recently set out to discover the most desired car brands around the world 
+         by analysing Google search data from the past 12 months
       </Typography>
     </WidgetWrapper>
   );

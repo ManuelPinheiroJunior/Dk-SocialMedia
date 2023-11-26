@@ -5,6 +5,16 @@ const LoginPage = () => {
   const theme = useTheme();
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   return (
+    <Box
+      width="100vw"
+      height="100vw"
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-between"
+      style={{ backgroundImage: "url(../assets/cars.jpg)", backgroundSize: "cover", 
+      backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundAttachment: "fixed",
+    }}
+    >
     <Box>
       <Box
         width="100%"
@@ -13,7 +23,7 @@ const LoginPage = () => {
         textAlign="center"
       >
         <Typography fontWeight="bold" fontSize="32px" color="primary">
-          Sociopedia
+          DRIFT KINGS
         </Typography>
       </Box>
 
@@ -24,11 +34,12 @@ const LoginPage = () => {
         borderRadius="1.5rem"
         backgroundColor={theme.palette.background.alt}
       >
-        <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Welcome to Socipedia, the Social Media for Sociopaths!
+        <Typography fontWeight="450" variant="h5" sx={{ mb: "1.5rem", textAlign: "center" }}>
+          Welcome to DK, the social media for speed fans!
         </Typography>
         <Form />
       </Box>
+    </Box>
     </Box>
   );
 };

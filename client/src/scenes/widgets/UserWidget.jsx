@@ -1,8 +1,11 @@
 import {
   ManageAccountsOutlined,
-  EditOutlined,
   LocationOnOutlined,
   WorkOutlineOutlined,
+  Instagram,
+  Twitter,
+  LinkedIn,
+  WhatsApp,
 } from "@mui/icons-material";
 import { Box, Typography, Divider, useTheme } from "@mui/material";
 import UserImage from "components/UserImage";
@@ -11,6 +14,7 @@ import WidgetWrapper from "components/WidgetWrapper";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ButtonsSectionProfiles from "components/ButtonsSectionProfiles";
 
 const UserWidget = ({ userId, picturePath }) => {
   const [user, setUser] = useState(null);
@@ -83,11 +87,11 @@ const UserWidget = ({ userId, picturePath }) => {
       {/* SECOND ROW */}
       <Box p="1rem 0">
         <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
-          <LocationOnOutlined fontSize="large" sx={{ color: main }} />
+          <LocationOnOutlined fontSize="large" sx={{ color: palette.grey }} />
           <Typography color={medium}>{location}</Typography>
         </Box>
         <Box display="flex" alignItems="center" gap="1rem">
-          <WorkOutlineOutlined fontSize="large" sx={{ color: main }} />
+          <WorkOutlineOutlined fontSize="large" sx={{ color: palette.grey }} />
           <Typography color={medium}>{occupation}</Typography>
         </Box>
       </Box>
@@ -120,7 +124,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
         <FlexBetween gap="1rem" mb="0.5rem">
           <FlexBetween gap="1rem">
-            <img src="../assets/twitter.png" alt="twitter" />
+            <Twitter sx={{ color: "#00D5FA" }} />
             <Box>
               <Typography color={main} fontWeight="500">
                 Twitter
@@ -128,12 +132,12 @@ const UserWidget = ({ userId, picturePath }) => {
               <Typography color={medium}>Social Network</Typography>
             </Box>
           </FlexBetween>
-          <EditOutlined sx={{ color: main }} />
+          <ButtonsSectionProfiles/>
         </FlexBetween>
 
         <FlexBetween gap="1rem">
           <FlexBetween gap="1rem">
-            <img src="../assets/linkedin.png" alt="linkedin" />
+            <LinkedIn sx={{ color: "#0077B5" }} />
             <Box>
               <Typography color={main} fontWeight="500">
                 Linkedin
@@ -141,8 +145,36 @@ const UserWidget = ({ userId, picturePath }) => {
               <Typography color={medium}>Network Platform</Typography>
             </Box>
           </FlexBetween>
-          <EditOutlined sx={{ color: main }} />
+          <ButtonsSectionProfiles/>
         </FlexBetween>
+
+        <FlexBetween gap="1rem">
+          <FlexBetween gap="1rem">
+            <Instagram sx={{ color: "#E1306C" }} />
+            <Box>
+              <Typography color={main} fontWeight="500">
+                Instagram
+              </Typography>
+              <Typography color={medium}>Social Network</Typography>
+            </Box>
+          </FlexBetween>
+            <ButtonsSectionProfiles/>
+        </FlexBetween>
+
+
+        <FlexBetween gap="1rem">
+          <FlexBetween gap="1rem">
+              <WhatsApp sx={{ color: "#25D366" }} />
+            <Box>
+              <Typography color={main} fontWeight="500">
+                WhatsApp
+              </Typography>
+              <Typography color={medium}>Social communication network</Typography>
+            </Box>
+          </FlexBetween>
+          <ButtonsSectionProfiles/>
+        </FlexBetween>
+
       </Box>
     </WidgetWrapper>
   );

@@ -51,14 +51,18 @@ const Navbar = () => {
           onClick={() => navigate("/home")}
           sx={{
             "&:hover": {
-              color: primaryLight,
               cursor: "pointer",
             },
           }}
         >
-          Sociopedia
+          DRIFT KINGS
         </Typography>
-        {isNonMobileScreens && (
+        
+      </FlexBetween>
+
+      {/* DESKTOP NAV */}
+      {isNonMobileScreens ? (
+        <FlexBetween gap="2rem">
           <FlexBetween
             backgroundColor={neutralLight}
             borderRadius="9px"
@@ -70,12 +74,6 @@ const Navbar = () => {
               <Search />
             </IconButton>
           </FlexBetween>
-        )}
-      </FlexBetween>
-
-      {/* DESKTOP NAV */}
-      {isNonMobileScreens ? (
-        <FlexBetween gap="2rem">
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkMode sx={{ fontSize: "25px" }} />
