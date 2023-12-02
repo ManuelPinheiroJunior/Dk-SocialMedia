@@ -23,7 +23,7 @@ const LoginPage = () => {
         textAlign="center"
       >
         <Typography fontWeight="bold" fontSize="32px" color="primary">
-          DRIFT KINGS
+          𝔇𝔯𝔦𝔣𝔱 𝔎𝔦𝔫𝔤𝔰
         </Typography>
       </Box>
 

@@ -57,17 +57,13 @@ const Form = () => {
 
   const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
-    const formData = new FormData();
-    for (let value in values) {
-      formData.append(value, values[value]);
-    }
-    formData.append("picturePath", values.picture.name);
 
     const savedUserResponse = await fetch(
-      "http://localhost:3001/auth/register",
+      `${process.env.REACT_APP_BASE_URL}/auth/register`,
       {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
       }
     );
     const savedUser = await savedUserResponse.json();
@@ -79,7 +75,7 @@ const Form = () => {
   };
 
   const login = async (values, onSubmitProps) => {
-    const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
+    const loggedInResponse = await fetch(`${process.env.REACT_APP_BASE_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
@@ -94,6 +90,27 @@ const Form = () => {
         })
       );
       navigate("/home");
+    }
+  };
+
+  const handleBlurUpload = async (values, onSubmitProps) => {
+    // this allows us to send form info with image
+    const formData = new FormData();
+    formData.append("file", values);
+
+    const savedUserResponse = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/pictures`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    const savedUser = await savedUserResponse.json();
+    onSubmitProps("picturePath", savedUser.img);
+    onSubmitProps.resetForm();
+
+    if (savedUser) {
+      setPageType("login");
     }
   };
 
@@ -183,7 +200,7 @@ const Form = () => {
                     acceptedFiles=".jpg,.jpeg,.png"
                     multiple={false}
                     onDrop={(acceptedFiles) =>
-                      setFieldValue("picture", acceptedFiles[0])
+                      setFieldValue("picture", acceptedFiles[0]) && handleBlurUpload(acceptedFiles[0],setFieldValue)
                     }
                   >
                     {({ getRootProps, getInputProps }) => (
@@ -193,7 +210,11 @@ const Form = () => {
                         p="1rem"
                         sx={{ "&:hover": { cursor: "pointer" } }}
                       >
-                        <input {...getInputProps()} />
+                        <input     
+                          type="file"
+                          id="file"
+                          name="file"
+                        {...getInputProps()} />
                         {!values.picture ? (
                           <p>Add Picture Here</p>
                         ) : (

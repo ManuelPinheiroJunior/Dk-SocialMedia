@@ -55,7 +55,7 @@ const Navbar = () => {
             },
           }}
         >
-          DRIFT KINGS
+          𝔇𝔯𝔦𝔣𝔱 𝔎𝔦𝔫𝔤𝔰
         </Typography>
         
       </FlexBetween>
