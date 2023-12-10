@@ -4,13 +4,13 @@ import User from "../models/User.js";
 /* CREATE */
 export const createPost = async (req, res) => {
   try {
-    const { userId, description, picturePath, firstName, lastName } = req.body;
+    const { userId, description, picturePath, firstName, lastName, location } = req.body;
     const user = await User.findById(userId);
     const newPost = new Post({
       userId,
       firstName: firstName,
       lastName: lastName,
-      location: user.location,
+      location: location,
       description,
       userPicturePath: user.picturePath,
       picturePath,
