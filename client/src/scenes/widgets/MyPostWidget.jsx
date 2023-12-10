@@ -31,19 +31,38 @@ const MyPostWidget = ({ picturePath }) => {
   const [image, setImage] = useState(null);
   const [post, setPost] = useState("");
   const { palette } = useTheme();
-  const { _id } = useSelector((state) => state.user);
+  const { _id, firstName, lastName } = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
 
+
+  const handleBlurUpload = async (values) => {
+    // this allows us to send form info with image
+    const formData = new FormData();
+    formData.append("file", values);
+
+    const savedImagePostUser = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/pictures`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    const savedImage = await savedImagePostUser.json();
+    setImage(savedImage.img);
+  };
+
   const handlePost = async () => {
     const formData = new FormData();
     formData.append("userId", _id);
     formData.append("description", post);
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
     if (image) {
       formData.append("picture", image);
-      formData.append("picturePath", image.name);
+      formData.append("picturePath", image);
     }
 
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}/posts`, {
@@ -83,7 +102,7 @@ const MyPostWidget = ({ picturePath }) => {
           <Dropzone
             acceptedFiles=".jpg,.jpeg,.png"
             multiple={false}
-            onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
+            onDrop={(acceptedFiles) => setImage(acceptedFiles[0] && handleBlurUpload(acceptedFiles[0]))}
           >
             {({ getRootProps, getInputProps }) => (
               <FlexBetween>

@@ -8,11 +8,9 @@ const postSchema = mongoose.Schema(
     },
     firstName: {
       type: String,
-      required: true,
     },
     lastName: {
       type: String,
-      required: true,
     },
     location: String,
     description: String,
