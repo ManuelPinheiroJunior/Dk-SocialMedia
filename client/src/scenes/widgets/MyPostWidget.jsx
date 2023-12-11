@@ -76,7 +76,7 @@ const MyPostWidget = ({ picturePath }) => {
     };
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}/posts`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
     const posts = await response.json();
