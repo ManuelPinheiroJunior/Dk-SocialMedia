@@ -65,11 +65,19 @@ const MyPostWidget = ({ picturePath }) => {
       formData.append("picture", image);
       formData.append("picturePath", image);
     }
-
+    const data = {
+      userId: _id,
+      description: post,
+      firstName,
+      lastName,
+      location,
+      picture: image,
+      picturePath: image,
+    };
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}/posts`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
-      body: formData,
+      body: JSON.stringify(data),
     });
     const posts = await response.json();
     dispatch(setPosts({ posts }));
